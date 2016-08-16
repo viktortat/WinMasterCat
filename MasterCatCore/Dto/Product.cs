@@ -2,12 +2,8 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ConsoleApplication1.Dto;
 
-namespace ConsoleApplication1
+namespace MasterCatCore.Dto
 {
     public class  Product
     {
@@ -47,5 +43,13 @@ namespace ConsoleApplication1
         public string DefaultImage { get; set; }
 
         public string FullName { get; set; }
+    }
+
+
+    public class ProductProp
+    {
+        public int Id { get; set; }
+        public string PropertyName { get; set; }
+        public string PropertyVal { get; set; }
     }
 }

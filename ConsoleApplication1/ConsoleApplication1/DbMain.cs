@@ -6,12 +6,13 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MasterCatCore.Dto;
 
 namespace ConsoleApplication1
 {
     class DbMain : DbContext
     {
-        public DbMain():base("TbnProd")
+        public DbMain():base("TbnProd.Local")
         { }
 
         public DbSet<Product> Products { get; set; }

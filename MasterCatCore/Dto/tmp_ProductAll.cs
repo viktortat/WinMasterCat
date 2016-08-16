@@ -1,4 +1,4 @@
-﻿namespace ConsoleApplication1
+﻿namespace MasterCatCore.Dto
 {
     public class tmp_ProductAll
     {

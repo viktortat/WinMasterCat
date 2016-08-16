@@ -16,9 +16,9 @@ using System.Configuration;
 
 namespace WinMasterCat
 {
-    public partial class Form1 : Form
+    public partial class frmMain : Form
     {
-        public Form1()
+        public frmMain()
         {
             InitializeComponent();
         }
@@ -244,6 +244,18 @@ namespace WinMasterCat
         }
 
         private void button3_Click(object sender, EventArgs e)
+        {
+            using (ProdAllContext db = new ProdAllContext())
+            {
+                var PProps = db.Test13.ToList();
+                foreach (TestUser pp in PProps)
+                {
+                    Console.WriteLine($"{pp.Name} ");
+                }
+            }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
         {
             using (ProdAllContext db = new ProdAllContext())
             {

@@ -42,10 +42,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="Dto\Brand.cs" />
     <Compile Include="Dto\Company.cs" />
     <Compile Include="Dto\Enums.cs" />
     <Compile Include="Dto\Product.cs" />
+    <Compile Include="Dto\TestUser.cs" />
     <Compile Include="Dto\tmp_ProductAll.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
