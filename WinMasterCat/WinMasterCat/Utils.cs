@@ -1,16 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using OfficeOpenXml;
 
 namespace WinMasterCat
 {
-    public class Utils
+    public static class Utils
     {
         public static DataTable GetDTNew(ExcelWorksheet ws)
         {
@@ -140,6 +142,32 @@ namespace WinMasterCat
                 dataTable.Rows.Add(values);
             }
             return dataTable;
+        }
+
+        public static void ExecProc(string SpName)
+        {
+            try
+            {
+                using (var connection = new SqlConnection(Program.connectionStr))
+                {
+                    connection.Open();
+                    using (var cmdPost = new SqlCommand())
+                    {
+                        cmdPost.CommandText = SpName;
+                        cmdPost.CommandType = CommandType.StoredProcedure;
+                        cmdPost.Connection = connection;
+                        Int32 rowsMerge;
+                        rowsMerge = cmdPost.ExecuteNonQuery();
+                        //lblTopCaption.Text = SpName + " " + rowsMerge;
+                    }
+                }
+
+            }
+            catch (SqlException se)
+            {
+                //Console.WriteLine(se);
+                MessageBox.Show(se.Message, "Ошибка с сервера!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

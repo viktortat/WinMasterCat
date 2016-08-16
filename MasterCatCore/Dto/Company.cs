@@ -5,6 +5,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MasterCatCore.Dto
 {
+    /// <summary>
+    /// Компании
+    /// </summary>
+    /// <remarks>Класс компаний</remarks>
     [System.Data.Linq.Mapping.Table(Name = "Company")]
     public class Company
     {
@@ -16,17 +20,38 @@ namespace MasterCatCore.Dto
         public virtual Company Parent { get; set; }
         public virtual int? ParentId { get; set; }
 
+        /// <summary>
+        /// Внутренний код
+        /// </summary>
         public string Code { get; set; }
 
+        /// <summary>
+        /// GLN - международный код
+        /// </summary>
         public string GlnCode { get; set; }
 
+        /// <summary>
+        /// Налоговый код
+        /// </summary>
         public string OkpoCode { get; set; }
 
+        /// <summary>
+        /// Тип
+        /// </summary>
         public virtual CompanyType Type { get; set; }
+        /// <summary>
+        /// Контактный телефон
+        /// </summary>
         public string ContactPhone { get; set; }
 
+        /// <summary>
+        /// Сайт
+        /// </summary>
         public string WebSite { get; set; }
 
+        /// <summary>
+        /// Контактная почта
+        /// </summary>
         public string ContactEmail { get; set; }
 
         public Guid OId { get; set; }
@@ -52,17 +77,6 @@ namespace MasterCatCore.Dto
         public string Description { get; set; }
 
     }
-    public class Language
-    {
-        [Column(Order = 1, TypeName = "char"), Key, MaxLength(2)]
-        public string Code { get; set; }
-
-        public string NativeName { get; set; }
-
-        public string IntName { get; set; }
-
-        public string CultureName { get; set; }
-        public bool? IsUseInRelease { get; set; }
-    }
+    
     
 }

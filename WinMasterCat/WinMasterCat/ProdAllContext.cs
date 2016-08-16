@@ -18,6 +18,7 @@ namespace WinMasterCat
         //public DbSet<ProductProp> ProdProps { get; set; }
         public DbSet<TestUser> Test13 { get; set; }
         public DbSet<Brand> Brands { get; set; }
+        public DbSet<BrandLoc> BrandLocs { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

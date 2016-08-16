@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using OfficeOpenXml;
 using System.Configuration;
+using MasterCatCore.Dto;
 
 namespace WinMasterCat
 {
@@ -152,31 +153,7 @@ namespace WinMasterCat
             //DataTable table = ToDataTable(t.ToList());
         }
 
-        private void ExecProc(string SpName)
-        {
-            try
-            {
-                using (var connection = new SqlConnection(Program.connectionStr))
-                {
-                    connection.Open();
-                    using (var cmdPost = new SqlCommand())
-                    {
-                        cmdPost.CommandText = SpName;
-                        cmdPost.CommandType = CommandType.StoredProcedure;
-                        cmdPost.Connection = connection;
-                        Int32 rowsMerge;
-                        rowsMerge = cmdPost.ExecuteNonQuery();
-                        //lblTopCaption.Text = SpName + " " + rowsMerge;
-                    }
-                }
 
-            }
-            catch (SqlException se)
-            {
-                //Console.WriteLine(se);
-                MessageBox.Show(se.Message, "Ошибка с сервера!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
         private void button2_Click(object sender, EventArgs e)
         {
             srcDt = new DataTable();
@@ -259,10 +236,22 @@ namespace WinMasterCat
         {
             using (ProdAllContext db = new ProdAllContext())
             {
-                var PProps = db.Test13.ToList();
-                foreach (TestUser pp in PProps)
+                string Lang = "ru";
+                var brns = from b in db.Brands.AsNoTracking().Where(x => x.State != EnumObjectsState.Deleted)
+                    from bl in db.BrandLocs.Where(x => x.Id == b.id && x.Lang == Lang)
+                    select new
+                    {
+                        Id = b.id,
+                        Code = b.Code,
+                        Name = bl.Name
+                    };
+
+                var i = 1;
+                //Brand brand = null;
+                foreach (var b in brns)
                 {
-                    Console.WriteLine($"{pp.Name} ");
+                    Console.WriteLine($"[{i}] \t {b.Id} \t {b.Code} \t {b.Name} ");
+                    i++;
                 }
             }
         }
