@@ -8,13 +8,7 @@ namespace WinMasterCat
 {
     static class Program
     {
-        private static string _connectionStr;
-
-        public static string connectionStr
-        {
-            get { return _connectionStr; }
-            set { _connectionStr = value; }
-        }
+        public static string connectionStr { get; set; }
 
         /// <summary>
         /// The main entry point for the application.
